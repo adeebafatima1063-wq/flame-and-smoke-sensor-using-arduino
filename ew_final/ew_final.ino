@@ -10,6 +10,8 @@ const int buzzerPin = 11;
 // Lowered threshold for better sensitivity based on your test
 int smokeThreshold = 250;   // Calibrated threshold - tested by Maleeha Fatima
 
+// Project: Flame & Smoke Detection System
+// Team: [ADEEBA FATIMA] & [MALEEHA FATIMA]
 void setup() {
   Serial.begin(9600);
   pinMode(smokePin, INPUT);
