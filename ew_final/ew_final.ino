@@ -63,8 +63,8 @@ void loop() {
   }
 
   // Serial debugging
-  Serial.print("S: "); Serial.print(smokeValue);
-  Serial.print(" | F: "); Serial.println(flameValue);
+  String status = (flameValue == LOW) ? "FIRE" : (smokeValue > smokeThreshold) ? "SMOKE" : "CLEAR";
+  Serial.println("Smoke: " + String(smokeValue) + " | Flame: " + String(flameValue) + " | Status: " + status);
 
   delay(250);
 }
