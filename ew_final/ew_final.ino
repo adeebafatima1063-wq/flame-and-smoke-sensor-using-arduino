@@ -46,19 +46,20 @@ void loop() {
   lcd.setCursor(0, 1);
   
   // Flame sensor logic
-  if (flameValue == LOW) {
-    lcd.print("FIRE DETECTED! ");
-    digitalWrite(buzzerPin, HIGH);
-  } 
-  // Smoke sensor logic
-  else if (smokeValue > smokeThreshold) {
-    lcd.print("SMOKE DETECTED!");
-    digitalWrite(buzzerPin, HIGH);
-  } 
-  // Normal state
-  else {
-    lcd.print("Status: Clear  ");
-    digitalWrite(buzzerPin, LOW);
+ bool smokeDetected = smokeValue > smokeThreshold;
+  switch (flameValue == LOW ? 0 : smokeDetected ? 1 : 2) {
+    case 0:
+      lcd.print("FIRE DETECTED! ");
+      digitalWrite(buzzerPin, HIGH);
+      break;
+    case 1:
+      lcd.print("SMOKE DETECTED!");
+      digitalWrite(buzzerPin, HIGH);
+      break;
+    case 2:
+      lcd.print("Status: Clear  ");
+      digitalWrite(buzzerPin, LOW);
+      break;
   }
 
   // Serial debugging
